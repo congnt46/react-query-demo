@@ -12,7 +12,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Switch>
-        <Route path="/users" exact component={List}/>
+        <Route path="/" component={List}/>
         <Route path="/users/:id" exact component={Details}/>
         <Route render={() => <p>Not found</p>}/>
       </Switch>
