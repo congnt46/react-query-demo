@@ -16,6 +16,7 @@ const List = () => {
     <div>
       <h1>User List</h1>
       <p>Total: {data.length}</p>
+      <p><strong>Last Refresh: {new Date().toISOString()}</strong></p>
       <table>
         <thead>
         <tr>
