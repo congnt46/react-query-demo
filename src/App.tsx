@@ -1,19 +1,24 @@
 import React from 'react';
-// import { QueryClient, QueryClientProvider } from 'react-query';
-// import Example from "./pages/Example";
-import PreExample from "./pages/PreExample";
+import {QueryClient, QueryClientProvider} from 'react-query';
+import {Switch, Route} from "react-router-dom";
+import {ReactQueryDevtools} from "react-query/devtools";
+import List from "./pages/List";
+import Details from "./pages/Details";
 
-// const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
 function App() {
 
-  return <PreExample />
-
-  // return (
-  //   <QueryClientProvider client={queryClient}>
-  //     <Example />
-  //   </QueryClientProvider>
-  // );
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Switch>
+        <Route path="/users" exact component={List}/>
+        <Route path="/users/:id" exact component={Details}/>
+        <Route render={() => <p>Not found</p>}/>
+      </Switch>
+      <ReactQueryDevtools initialIsOpen={false}/>
+    </QueryClientProvider>
+  );
 }
 
 export default App;
