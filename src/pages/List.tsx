@@ -24,7 +24,7 @@ const List = () => {
         </tr>
         </thead>
         <tbody>
-        {data.map((post: any) => (
+        {data.map((post) => (
           <tr key={post.id.toString()}>
             <td>{post.id}</td>
             <td>{post.title}</td>

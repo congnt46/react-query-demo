@@ -11,7 +11,7 @@ function usePosts() {
     staleTime: 5000,
   });
 
-  const hasMore = data?.length >= 5;
+  const hasMore = data && data.length >= 5;
 
   // Prefetch the next page!
   useEffect(() => {
