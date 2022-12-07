@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+# An introduction & demo of React Query
+
+To be used during my seminar with live coding when working in VMO Holding JSC.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Demonstrated Topics
+
+| #   | Topic                                                                                          | Branch                  |
+|-----|------------------------------------------------------------------------------------------------|-------------------------|
+| 1   | Quick start with a simple usage example                                                        | 1-simple                |
+| 2   | Integration of React Query for fetching a data list and item detail. How the data store works. | 2-list-&-details        |
+| 3   | **Polling** feature of React Query                                                             | 3-polling               |
+| 4   | Implement **Pagination** and **Prefetch** functionality with React Query                       | 4-pagination-&-prefetch |
+
 
 ## Available Scripts
 
