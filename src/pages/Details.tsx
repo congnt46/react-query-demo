@@ -1,6 +1,7 @@
 import React from "react";
 import {useHistory, useParams} from "react-router-dom";
 import {useUser} from "../hooks/queries";
+import getErrorMessage from "../utils/getErrorMessage";
 
 const Details: React.FC = () => {
   const { id } = useParams<{id: string}>()
@@ -9,11 +10,9 @@ const Details: React.FC = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (error) { // @ts-ignore
-    return <div>An error has occurred: {error.message}</div>;
+  if (error || !data) {
+    return <div>An error has occurred: {getErrorMessage(error)}</div>;
   }
-
-  console.log('Details')
 
   return (
     <div>

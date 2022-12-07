@@ -1,17 +1,16 @@
 import React from "react";
 import {useUsers} from "../hooks/queries";
 import {Link} from "react-router-dom";
+import getErrorMessage from "../utils/getErrorMessage";
 
 const List = () => {
   const {isLoading, error, data, isFetching} = useUsers();
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (error) { // @ts-ignore
-    return <div>An error has occurred: {error.message}</div>;
+  if (error || !data) {
+    return <div>An error has occurred: {getErrorMessage(error)}</div>;
   }
-
-  console.log('List')
 
   return (
     <div>
@@ -27,7 +26,7 @@ const List = () => {
         </tr>
         </thead>
         <tbody>
-        {data.map((user: any) => (
+        {data.map((user) => (
           <tr key={user.id.toString()}>
             <td>{user.id}</td>
             <td>{user.name}</td>
