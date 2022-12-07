@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import getErrorMessage from "../utils/getErrorMessage";
+import {Sample} from "../types/Sample";
+import {Response} from "../types/common";
 
 const PreExample = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<null|string>(null);
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<Sample | null>(null);
 
   useEffect(() => {
     (() => fetchData())()
@@ -12,21 +15,20 @@ const PreExample = () => {
 
   async function fetchData() {
     try {
-      const res = await axios.get(
+      const res = await axios.get<{}, Response<Sample>>(
         "https://api.github.com/repos/tannerlinsley/react-query"
       );
       setData(res.data)
     } catch (e) {
-      // @ts-ignore
-      setError(e.message)
+      setError(getErrorMessage(e))
     }
     setIsLoading(false)
   }
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (error) { // @ts-ignore
-    return <div>An error has occurred: {error}</div>;
+  if (error || !data) {
+    return <div>An error has occurred: {getErrorMessage(error)}</div>;
   }
 
   return (

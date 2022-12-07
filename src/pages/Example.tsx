@@ -2,12 +2,15 @@ import React from "react";
 import {useQuery} from "react-query";
 import axios from "axios";
 import {ReactQueryDevtools} from "react-query/devtools";
+import {Sample} from "../types/Sample";
+import {Response} from "../types/common";
+import getErrorMessage from "../utils/getErrorMessage";
 
 const Example = () => {
   const {isLoading, error, data, isFetching} = useQuery("example-data", fetchData);
 
   async function fetchData() {
-    const res = await axios.get(
+    const res = await axios.get<{}, Response<Sample>>(
       "https://api.github.com/repos/tannerlinsley/react-query"
     );
     return res.data;
@@ -15,8 +18,8 @@ const Example = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (error) { // @ts-ignore
-    return <div>An error has occurred: {error.message}</div>;
+  if (error || !data) {
+    return <div>An error has occurred: {getErrorMessage(error)}</div>;
   }
 
   return (
